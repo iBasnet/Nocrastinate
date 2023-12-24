@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nocrastinate™</title>
+    <link rel="shortcut icon" href="src/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@400,700,500,600,300&f[]=general-sans@500,300,600,400,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<body>
+    <img src="src/Nocrastinate.png" class="Nocrastinate" srcset="">
+    <header id="top">
+        <nav>
+            <ul>
+                <li>
+                    <a href="" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="#timer">Timer</a>
+                </li>
+                <li>
+                    <a href="#alarm">Alarm</a>
+                </li>
+                <li>
+                    <a href="#graph">Graph</a>
+                </li>
+                <li>
+                    <a onclick="toggleBackground()">Toggle</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <audio id="audioPlayer" src="src/radar.mp3"></audio>
+        <section class="heading">
+            <div class="main-text">
+                <h1 id="greeting">Good, Evening! <span class="emoji">🌙</span></h1>
+                <p>Reject <strong>Procrastination</strong>. Embrace <strong>Determination</strong>.</p>
+            </div>
+        </section>
+        <section class="buttons">
+            <div class="todo-bar todo-add">
+                <input type="text" placeholder="Add Some Tasks..." spellcheck="false" class="todo" id="todo-input">
+                <a class="btn btn-add" onclick="addTask()" id="error success">ADD</a>
+            </div>
+            <div class="todo-bar todo-bar-1">
+                <input type="text" placeholder="Set a Timer!" spellcheck="false" class="todo">
+                <a href="#timer" class="btn btn-timer btn-timer-alarm btn-width" id="info">00:00:00</a>
+            </div>
+            <div class="todo-bar todo-bar-2">
+                <input type="text" placeholder="Set an Alarm!" spellcheck="false" class="todo">
+                <a href="#alarm" class="btn btn-alarm btn-timer-alarm btn-width">09:11 AM</a>
+            </div>
+            <section class="buttons">
+            </section>
+        </section>
+        <h2 id="graph">Progress Graph <span class="emoji">📈</span></h2>
+        <section class="graph">
+            <div id="content">
+                <canvas id="weeklyBarGraph"></canvas>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+            <h3>Progress Rankings <span class="emoji">🌿</span></h3>
+            <!-- <button id="increaseButton" onclick="increaseProgressBar()">Increase Progress</button> -->
+            <!-- <button id="decreaseButton" onclick="decreaseProgressBar()">Decrease Progress</button> -->
+        </section>
+        <h2 id="timer" class="iHeader">SET A TIMER</span></h2>
+        <section class="input-form-1">
+            <section class="input-form-timer">
+                <div class="input-form-timer-tooltip">
+                    <p class="if-p">Hrs</p>
+                    <p class="if-p">Min</p>
+                    <p class="if-p">Sec</p>
+                </div>
+                <div class="input-form-timer-button-group">
+                    <input type="Number" class="input-form-timer-button iftb-1" min="0">
+                    <input type="Number" class="input-form-timer-button iftb-2" min="0" max="59">
+                    <input type="Number" class="input-form-timer-button iftb-3" min="0" max="59">
+                </div>
+                <div class="output-form-timer-button-group">
+                    <a class="btn btn-form-1 anchor-1" onclick="resetTimer()">RESET</a>
+                    <a class="btn btn-form-1 anchor-1" onclick="startTimer()" href="#top">START</a>
+                </div>
+            </section>
+            <section class="input-form-alarm"></section>
+        </section>
+
+        <h2 id="alarm" class="iHeader">SET AN ALARM</h2>
+        <section class="input-form-2">
+            <section class="input-form-alarm">
+                <div class="input-form-alarm-tooltip">
+                    <p class="if-p">Hrs</p>
+                    <p class="if-p">Min</p>
+                    <p class="if-p">AM¬</p>
+                </div>
+                <div class="input-form-alarm-button-group">
+                    <div>
+                        <input type="Number" class="input-form-alarm-button" id="hoursInput">
+                    </div>
+                    <div>
+                        <input type="Number" class="input-form-alarm-button" id="minutesInput">
+                    </div>
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox" class="input-form-alarm-button input-switch">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="output-form-alarm-button-group">
+                    <a class="btn btn-form-2 btn-form-2-i anchor-2" onclick="resetAlarm(event)" min="0"
+                        max="12">RESET</a>
+                    <a class="btn btn-form-2 btn-form-2-ii anchor-2" href="#top" min="0" max="59">START</a>
+                </div>
+            </section>
+    </main>
+    <section class="tt">
+        <div>
+            <button class="btn-tt" onclick="toggleTT()"><a class="anchor-tt">Tips & Tricks</a></button>
+        </div>
+        <div class="tt-area">
+            <p class="para-tt">
+                <strong>1. Pomodoro Technique:</strong> This technique involves studying for a set amount of time
+                (usually
+                25
+                minutes)
+                followed by a short
+                break. After completing four cycles, take a longer break. It helps in maintaining focus and
+                productivity.
+                <br><br>
+                <strong>2. Active Recall:</strong> Engage in active learning by recalling information without
+                looking at
+                your
+                notes
+                or
+                textbooks. This could
+                involve flashcards, summarizing material, or teaching concepts to someone else.
+                <br><br>
+                <strong>3. Spacing Effect:</strong> Instead of cramming, space out your study sessions over time.
+                Reviewing
+                material
+                consistently over
+                intervals helps in better retention compared to massed practice.
+                <br><br>
+                <strong>4. Mind Mapping:</strong> Mind Mapping: Create visual diagrams or mind maps to represent and
+                organize
+                information. This technique
+                aids in
+                understanding relationships between concepts and enhances memory recall.
+                <br><br>
+                <strong>5. SQ3R Method:</strong> Survey, Question, Read, Recite, Review. It's a structured reading
+                method
+                involving
+                previewing the material,
+                formulating questions, reading actively, summarizing or reciting, and reviewing the content for
+                better
+                comprehension.
+                <br><br>
+                <strong>6. Cornell Method:</strong> Divide your notes into cues, main points, and summaries. This
+                involves taking
+                organized,
+                concise notes
+                during lectures or while reading, followed by summarizing the main points to reinforce learning.
+                <br><br>
+                <strong>7. Chunking:</strong> Break down large amounts of information into smaller, manageable parts
+                or
+                "chunks."
+                This aids
+                in memorization
+                and comprehension by organizing data into meaningful groups.
+                <br><br>
+                <strong>8. Visualization:</strong> Create mental images or diagrams of concepts to better understand
+                and
+                retain
+                information.
+                This technique
+                taps into the brain's visual processing power, aiding in memory retention.
+                <br><br>
+                <strong>9. Teaching Others:</strong> Explaining concepts to someone else (a study partner, friend,
+                or
+                even an
+                imaginary
+                audience) forces you
+                to articulate and understand the material thoroughly.
+                <br><br>
+                <strong>10. Use of Mnemonics:</strong> Create mnemonic devices like acronyms, rhymes, or visual
+                associations to
+                remember
+                complex information
+                more easily.
+            </p>
+        </div>
+    </section>
+    <div class="notifications"></div>
+    <footer>
+        <p>~ BASNET ~</p>
+        <a href="https://linktr.ee/basnet" class="footer-link" target="_blank">linktr.ee/basnet</a>
+    </footer>
+    <script src="script.js"></script>
+    <script src="timer.js"></script>
+    <script src="alarm.js"></script>
+    <script src="graph.js"></script>
+    <script src="progress.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            restrictNegativeInput();
+        });
+    </script>
+</body>
+
+</html>
